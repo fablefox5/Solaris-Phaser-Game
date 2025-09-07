@@ -1,0 +1,54 @@
+            *,
+            *::before,
+            *::after {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            :host {
+                display: none !important; /* otherwise the app interferes with touch events */
+            }
+    
+            html, body {
+                width: 100%;
+                height: 100%;
+            }
+    
+            body {
+                line-height: 1;
+                font-family: Arial, sans-serif;
+                background-color: #040218;
+            }
+    
+            ol, ul {
+                list-style: none;
+            }
+    
+            img, video {
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+    
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+            
+
+            .button-container {
+                background-color: rgba(255, 255, 255, 0.205);
+                border-color: rgba(255, 255, 255, 0.5);
+                border-radius: 10px;
+                display: none;
+                /* padding: 40px 70px; */
+            }
+
+            .button-container div {
+                cursor: pointer;
+            }
+
+            .hide-element {
+                background-color: rgba(255, 255, 255, 0.0);
+            }
