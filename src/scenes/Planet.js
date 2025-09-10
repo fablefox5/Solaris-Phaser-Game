@@ -92,6 +92,11 @@ export default class Planet extends Phaser.Physics.Arcade.Sprite {
                     unit.takeDamage(1);
                     this.captureTeamColor = unit.teamColor; 
                 }
+                else {
+                     this.currentProgress -= unit.damage;
+                    unit.takeDamage(1);
+                    this.displayProgressBar(this.currentProgress*(360/this.levelRequirements[this.level]), this.captureTeamColor);
+                }
             }
             else {
                 this.currentProgress += unit.damage;

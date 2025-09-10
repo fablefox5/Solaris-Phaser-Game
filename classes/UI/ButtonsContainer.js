@@ -26,7 +26,6 @@ export default class ButtonsContainer extends Phaser.GameObjects.Container {
     }
 
     draw() {
-        console.log(this.isRowOriented);
         if(this.isRowOriented) {
             this.containerElement.style.padding = `35px ${this.offsetPadding}px`;
             for(let i = 0; i < this.buttonImages.length; i++) {
@@ -49,16 +48,13 @@ export default class ButtonsContainer extends Phaser.GameObjects.Container {
                 }, this)
 
                 btn.on('pointerover', () => {
-                    console.log("pointer over");
                     this.onHoverEnter(btn);
                 }, this)
 
                 btn.on('pointerout', () => {
-                    console.log("pointer out");
                     this.onHoverExit(btn);
                 }, this)
 
-                // console.log(btn.texture.source[0].image);
                 this.containerElement.append(document.createElement('div'));
                 this.scene.add.dom(this.x + (this.gap/2), this.y, this.containerElement);
             }
@@ -67,7 +63,6 @@ export default class ButtonsContainer extends Phaser.GameObjects.Container {
             for(let i = 0; i < this.buttonImages.length; i++) {
                 this.containerElement.style.padding = `${this.offsetPadding + (30 * this.scaleOffset)}px 
                                                        ${this.offsetPadding + (40 * this.scaleOffset)}px`;
-                console.log(i *  this.gap);
                 const btn = this.scene.add
                 .image(0, i * (this.gap+30), this.buttonImages[i])
                 .setScale(this.scaleOffset)
@@ -88,16 +83,13 @@ export default class ButtonsContainer extends Phaser.GameObjects.Container {
                 }, this)
 
                 btn.on('pointerover', () => {
-                    console.log("pointer over");
                     this.onHoverEnter(btn);
                 }, this)
 
                 btn.on('pointerout', () => {
-                    console.log("pointer out");
                     this.onHoverExit(btn);
                 }, this)
 
-                // console.log(btn.texture.source[0].image);
                 this.containerElement.append(document.createElement('div'));
                 this.scene.add.dom(this.x, this.y + ((this.gap)/2)+20, this.containerElement);
             }
@@ -165,7 +157,6 @@ export default class ButtonsContainer extends Phaser.GameObjects.Container {
 
     disable() {
         if(this.isEnabled) {
-            console.log("disabling: ", this.containerElement.children.length);
             for(let i = 0; i < this.containerElement.children.length; i++) {
                 this.getAt(i).alpha = 0;
             }

@@ -35,18 +35,4 @@ export default class VectorField {
         }
     }
 
-    
-    // drawVectorField(vectorArray, xOrigin, yOrigin, size, spacing) {
-    //     const halfSize = size / 2;
-
-    //     for(let x = -halfSize; x < halfSize; x += spacing) {
-    //         for(let y = -halfSize; y < halfSize; y += spacing) {
-    //             const vector = this.createVector(x + xOrigin, y + yOrigin, xOrigin, yOrigin);
-    //             vectorArray.set(`${x+xOrigin},${y+yOrigin}`, vector);
-    //             // const line = this.scene.add.line(x + xOrigin, y + yOrigin, 0, 0, vector.x, vector.y, 0x00ff00);
-    //             // line.setOrigin(0, 0);
-    //         }
-    //     }
-    // }
-
 }

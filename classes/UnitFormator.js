@@ -7,10 +7,8 @@ export default class UnitFormator {
         switch(this.formatIndex) {
             case 0:
                 return this.starFormator(index, xCenter, yCenter);
-                break;
             case 1:
                 return this.squareFormator(index, xCenter, yCenter);
-                break;
         }
     }
     setFormat(formatIndex) {

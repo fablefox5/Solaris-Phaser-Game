@@ -20,11 +20,9 @@ export class MainMenu extends Phaser.Scene {
 
     onHoverEnter(btn) {
         btn.setTint(0x0001000);
-        console.log(btn.tint);
     }
 
     onHoverExit(btn) {
-        console.log("exit");
         btn.tint = 16777215;
     }
 
@@ -56,7 +54,6 @@ export class MainMenu extends Phaser.Scene {
         mainMenuBGVideo.play(true);
 
         this.add.image(350, 100, 'title');
-        console.log(this.textures.get('main-menu-bg').getFrameNames());
         const buttonImages = [
             'play-button',
             'quit-button'
@@ -74,15 +71,6 @@ export class MainMenu extends Phaser.Scene {
         this.buttonContainer.enable();
         this.buttonContainer.setOnClickCallback(this.onClickBtnPressed.bind(this));
         this.buttonContainer.setOnUnClickCallback(this.onClickBtnUnPressed.bind(this));
-        // this.buttonContainer.setOnHoverEnterCallback(this.onHoverEnter);
-        // this.buttonContainer.setOnHoverExitCallback(this.onHoverExit);
-
-        // this.anims.create({
-        //     key: "move-text",
-        //     frames: this.anims.generateFrameNumbers("win-game", {frames:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}),
-        //     frameRate: 16,
-        //     repeat:-1
-        // })
 
         this.registry.set('level', 0); //global value initialization for levels for planet positions
         this.registry.set('completed-levels', new Map());

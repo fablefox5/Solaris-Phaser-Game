@@ -26,7 +26,6 @@ export class LevelSelect extends Phaser.Scene {
             levelButtonBox.setOrigin(0.3, 0.2);
 
             if(isCompleted) {
-                console.log(i);
                 const completedImg = this.add.image(buttonX-5, buttonY+5, 'completed-level')
                 .setScale(0.35)
                 .setOrigin(0.2, 0.3);
@@ -35,7 +34,6 @@ export class LevelSelect extends Phaser.Scene {
             levelButtonBox.setInteractive({cursor: 'pointer'});
 
             levelButtonBox.on('pointerover', () => {
-                console.log("pointer over");
                 graphics.clear();
                 graphics.fillStyle(0xf5f5f5, 0.2);
                 graphics.fillRoundedRect(buttonX - 15, buttonY -10, 50, 50, 16);

@@ -24,8 +24,6 @@ export default class AIController {
 
     calculateStateWeight() {
         //adds offset if more than 30 units in game, putting more chance of taking action
-        // console.log(this.units.children.entries);
-        // const arrayOfSelfUnits = [...this.units.children];
         const numUnitsSelf = this.units.children.entries.filter(unit => unit.teamColor === this.teamColor).size;
         if(this.units.children.size > 30 && numUnitsSelf > 20) {
             this.weightOffset += 0.08;
@@ -46,7 +44,6 @@ export default class AIController {
 
     chooseState() {
         const weight = this.calculateStateWeight();
-        console.log(weight);
         if(weight >= this.stateWeights['IDLE'][0] && weight <= this.stateWeights['IDLE'][1]) {
             return new IdleState();
         }

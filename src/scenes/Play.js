@@ -54,6 +54,9 @@ export class Play extends Phaser.Scene {
         this.vectorFieldManager = new VectorField(this);
         this.vectorDataMap = new Map();
         this.musicArray = [];
+        
+
+        this.clickedOnce = false;
     }
 
     init() {
@@ -120,11 +123,19 @@ export class Play extends Phaser.Scene {
             graphics.clear();
             //for dragging selection area for selecting units
             if(pointer.button === 0) {
-                for(let i = 0; i < this.planets.children.size; i++) {
-                    const unit = this.planets.children.entries[i];
-                    
+                if(this.clickedOnce === true) {
+                    console.log("clicked twice");
+                    for(let i = 0; i < this.units.children.size; i++) {
+                        const unit = this.units.children.entries[i];
+                        if(unit.teamColor === this.userColor) {
+                            this.selectUnit(unit);
+                        }
+                    }
                 }
-                isSelecting = true;
+                else {
+                    isSelecting = true;
+                }
+
             }
             //for choosing a target location for movement
             if(pointer.button === 2){
@@ -165,6 +176,10 @@ export class Play extends Phaser.Scene {
             if(pointer.button === 0) {
                 graphics.clear();
                 isSelecting = false;
+                this.clickedOnce = true;
+                setTimeout(() => {
+                    this.clickedOnce = false;
+                }, 1000);
             }
         });
         
@@ -192,22 +207,30 @@ export class Play extends Phaser.Scene {
                     }
 
                     if(this.selectionContains(unit.x, unit.y)) {
-                        if(unit.selected === false) {
-                            this.numSelected++;
-                        }
-                        unit.tint = 0x08f70b;
-                        unit.selected = true;
+                        this.selectUnit(unit);
                     }
                     else {
-                        if(unit.selected === true) {
-                            this.numSelected--;
-                        }
-                        unit.tint = unit.teamColor;
-                        unit.selected = false;
+                        this.deselectUnit(unit);
                     }
                 }
             }
         })
+    }
+
+    selectUnit(unit) {
+         if(unit.selected === false) {
+            this.numSelected++;
+         }
+        unit.tint = 0x08f70b;
+        unit.selected = true;
+    }
+
+    deselectUnit(unit) {
+        if(unit.selected === true) {
+            this.numSelected--;
+        }
+        unit.tint = unit.teamColor;
+        unit.selected = false;
     }
 
     calculateSelectionArea(pointer) {
@@ -345,10 +368,7 @@ export class Play extends Phaser.Scene {
             return [x, y];
         };
 
-        // this.randomizePlanetPositions(NUM_TEAMS, NUM_PLANETS_PER_TEAM, NUM_PLANETS_EMPTY);
-        console.log(this.levelManager.getLevel(this.registry.get('level')));
         this.spawnPlanets(this.levelManager.getLevel(this.registry.get('level')));
-        console.log(this.vectorDataMap.get("216, 44"));
 
         this.physics.add.overlap(this.planets, this.units, (planet, unit) => {
             planet.unitCollide.bind(planet); 
@@ -418,7 +438,6 @@ export class Play extends Phaser.Scene {
         }
 
         function onClickBtnUnPressed(btn) {
-            console.log("test");
             const btnKey = btn.texture.key.split('-')[0];
             btn.setTexture(`${btnKey}-button`);
 
