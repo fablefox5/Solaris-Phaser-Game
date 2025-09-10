@@ -4,7 +4,7 @@ export default class Planet extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture, color, scale, maxLevel, health, group, isEmpty, startingNumUnits) {
         super(scene, x, y, texture);
         this.setScale(scale);
-        this.level = color === '0x111111' ? 0 : 1;
+        this.level = color === '0x909090' ? 0 : 1;
         this.levelRequirements = [
             //levels 0-3, upgrading to 0->1, 1->2, 2->3
             10,

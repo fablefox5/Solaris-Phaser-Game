@@ -32,11 +32,11 @@ export class Play extends Phaser.Scene {
             'redTeam': 0xec2a00,
             'orangeTeam': 0xee9400,
             // 'purpleTeam': 0xac00ec,
-            'noTeam': 0x111111 
+            'noTeam': 0x909090 
         }
 
         this.colorsIndex = [
-            0x111111, 
+            0x909090, 
             0xec2a00,
             0xee9400
         ]
